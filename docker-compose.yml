@@ -1,0 +1,22 @@
+version: '3'
+services:
+  book-api:
+    build: .
+    container_name: container_book_api
+    depends_on:
+      - pgsql
+    volumes:
+      - .:/usr/src/app
+    ports:
+      - '${API_PORT}:${API_PORT}'
+    env_file:
+      - ./.env
+    environment:
+      DATABASE_URL: ${PGSQL_URL}
+  pgsql:
+    image: postgres:9.6.2-alpine
+    container_name: container_pgsql_db
+    environment:
+      POSTGRES_USER: ${PGSQL_USER}
+      POSTGRES_PASSWORD: ${PGSQL_PASSWORD}
+      POSTGRES_DB: ${PGSQL_DB}
