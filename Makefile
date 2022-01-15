@@ -1,13 +1,13 @@
 up:
 	docker-compose up
-down:
-	docker-compose down
+# down:
+# 	docker-compose down
 stop:
 	docker-compose stop
 build: 
 	docker-compose up --build
 freeze:
-	ocker exec -it container_book_api pip freeze > requirements.txt
+	docker exec -it container_book_api pip freeze > requirements.txt
 api:
 	docker exec -it container_book_api /bin/sh
 db:
