@@ -4,6 +4,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from tortoise.contrib.fastapi import register_tortoise
 from src.routes.books import book_router
 from src.routes.pages import page_router
+from src.routes.images import image_router
 
 app = FastAPI(title="Livro mágico")
 
@@ -24,6 +25,7 @@ register_tortoise(
 
 app.include_router(book_router, prefix='/book')
 app.include_router(page_router, prefix='/page')
+app.include_router(image_router, prefix='/image')
 
 
 @app.get("/")

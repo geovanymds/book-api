@@ -13,6 +13,10 @@ class Page(BaseModel):
     magic_code: str
 
 
+class Image(BaseModel):
+    magic_code: str
+
+
 class ResponseSingleModel(BaseModel):
     data: Optional[dict]
     message: str
