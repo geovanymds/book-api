@@ -7,6 +7,12 @@ class Book(BaseModel):
     author: str
 
 
+class Page(BaseModel):
+    page_number: int
+    page_text: str
+    magic_code: str
+
+
 class ResponseSingleModel(BaseModel):
     data: Optional[dict]
     message: str

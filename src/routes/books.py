@@ -2,7 +2,6 @@ from email import message
 from fastapi import APIRouter, HTTPException
 from fastapi.encoders import jsonable_encoder
 from src.schemas import Book, ResponseSingleModel
-from src.models.books import Books
 import src.services.books as book_service
 
 book_router = APIRouter()
