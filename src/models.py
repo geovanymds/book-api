@@ -9,7 +9,7 @@ class Books(Model):
   total_pages: int = fields.IntField(default=0)
   total_images: int = fields.IntField(default=0)
   def __str__(self):
-    return self.name
+    return self.title
 
 class Pages(Model):
   page_id: int = fields.IntField(pk=True)
@@ -28,4 +28,4 @@ class Images(Model):
   size: int = fields.IntField(default=0)
   book_id: int = fields.ForeignKeyField('models.Books', related_name='owned_image')
   def __str__(self):
-    return self.name
+    return self.original_name
