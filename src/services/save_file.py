@@ -2,15 +2,20 @@ from fastapi import UploadFile
 from src.utils.utils import createDirectoryIfDoesntExist
 
 
-async def save_file(file: UploadFile, magic_code: str) -> bool:
+async def save_file(file: UploadFile, magic_code: str, file_index: int) -> bool:
     try:
-        createDirectoryIfDoesntExist(magic_code)
-        with open(f'src/public/{magic_code}/{file.filename}', 'wb') as image:
+        createDirectoryIfDoesntExist(f'public/{magic_code}')
+        image_info = {}
+        path = f'public/{magic_code}/{file_index}-{file.filename}'
+        with open(path, 'wb') as image:
             content = await file.read()
             image.write(content)
             image.close()
             print('File saved !')
-            return True
+        image_info['path'] = path
+        image_info['url'] = f'http://localhost:8000/{path}'
+        image_info['name'] = f'{file_index}-{file.filename}'
+        return image_info
     except Exception as error:
         print(f'[ERRO]: {error}')
         raise error

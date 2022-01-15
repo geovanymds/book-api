@@ -1,17 +1,15 @@
 import uuid
 import os
 
-PUBLIC_PATH = 'src/public/'
-
 
 def generateMagicCode() -> str:
     return str(uuid.uuid4())
 
 
-def createDirectoryIfDoesntExist(magic_code: str) -> bool:
-    exists = os.path.exists(f'{PUBLIC_PATH}/{magic_code}')
+def createDirectoryIfDoesntExist(path: str) -> bool:
+    exists = os.path.exists(path)
     if(not exists):
-        os.makedirs(f'{PUBLIC_PATH}/{magic_code}')
-        print(f'Directory "{PUBLIC_PATH}/{magic_code}" created !')
+        os.makedirs(path)
+        print(f'Directory "{path}" created !')
         return True
     return False
