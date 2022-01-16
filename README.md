@@ -6,7 +6,7 @@ API para criação de livros. Nela são mantidas informações de um livro criad
 
 ## :heavy_check_mark: Pré-requisitos
 
-- Docker (versão 0.10.6, build 370c289)
+- Docker (versão 20.10.6, build 370c289)
 - Docker-compose (versão 1.21.2, build a133471)
 - HTTP Client (Recomendação: Postman) - Utilizados para os testes
 - Permissão para execução de comandos através do Makefile
@@ -128,7 +128,7 @@ Também foi criada uma rota para recuperação de todos os livros. Ela retorna s
 
 ## :pencil2: Decisões tomadas
 
-Durante o processo de desenvolvimento me deparei com algumas escolhas que impactariam na solução. Foi optado pelo docker-compose para facilitar a configuração do ambiente da(s) pessoa(s) que ira(ão) rodar a aplicação, além de ser mais simples gerenciar os recursos necessários e padronizar as versões utilizadas. Para as tecnologias envolvidas na api optei pelas que já tinha algum conhecimento que poderiam facilitar o cumprimento de alguns requisitos do desafio. Já tinha conhecimento, por exemplo, que o FastAPI automatizava o desenvolvimento do Swagger. Para realizar o upload pensei em alguma solução simples e que fosse fácil de ser testada pelo avaliador, por isso a opção de utilizar um form-data, em detrimento de subir uma string base64 por exemplo. Ainda sobre o upload foi optado por salvar os arquivos no servidor para (novamente) facilitar a configuração de ambiente, pois outra alternativa (mais adequada para o ambiente real) seria o upload em algum serviço na nuvem. Por fim, para gerar o código único foi utilizado uma função que sorteava 6 letras, porém ainda era verificado se o valor gerado já não existia no banco. A probabilidade de serem gerados dois ou mais códigos é baixa, mas ainda foi feita essa validação para contornar a dificuldade em achar algum tipo de codificação que atendesse aos requisitos.
+Durante o processo de desenvolvimento me deparei com algumas escolhas que impactariam na solução. Foi optado pelo docker-compose para facilitar a configuração do ambiente da(s) pessoa(s) que ira(ão) rodar a aplicação, além de ser mais simples gerenciar os recursos necessários e padronizar as versões utilizadas. Para as tecnologias envolvidas na api optei pelas que já tinha algum conhecimento que poderiam facilitar o cumprimento de alguns requisitos do desafio. Já tinha conhecimento, por exemplo, que o FastAPI automatizava o desenvolvimento do Swagger. Para realizar o upload pensei em alguma solução simples e que fosse fácil de ser testada pelo avaliador, por isso a opção de utilizar um form-data, em detrimento de subir uma string base64 por exemplo. Ainda sobre o upload foi optado por salvar os arquivos no servidor para (novamente) facilitar a configuração de ambiente, pois outra alternativa (mais adequada para o ambiente real) seria o upload em algum serviço na nuvem. Por fim, para gerar o código único foi utilizado uma função que sorteava 6 letras, porém ainda era verificado se o valor gerado já não existia no banco. A probabilidade de serem gerados dois ou mais códigos é baixa, mas ainda foi feita essa validação para contornar a dificuldade em achar algum tipo de codificação que atendesse aos requisitos. Eu tentei implementar os testes unitários para as rotas, mas tive dificuldade em integrá-lo com o ORM e com o banco de dados.
 
 ## :fox_face: Curiosidades
 
