@@ -12,13 +12,13 @@ async def create(page_data: dict):
         if(book[0].total_pages == 6):
             raise Exception(
                 'Book already have 6 pages.')
-        is_page_number_valid = len(await Pages.filter(book_id=book[0].book_id, page_number=page_data['page_number'])) <= 0
+        is_page_number_valid = len(await Pages.filter(book_id=book[0].book_id, number=page_data['number'])) <= 0
         print(f'IS PAGE VALID: {is_page_number_valid}')
         if (not is_page_number_valid):
             raise Exception(
-                f'This book already has pagen number {page_data["page_number"]}')
+                f'This book already has pagen number {page_data["number"]}')
         print(f'BOOK FOUND: {book[0]}')
-        page = await Pages.create(page_number=page_data['page_number'], page_text=page_data['page_text'], book_id=book[0].book_id)
+        page = await Pages.create(number=page_data['number'], text=page_data['text'], book_id=book[0].book_id)
         book[0].total_pages = book[0].total_pages+1
         await book[0].save()
         return page

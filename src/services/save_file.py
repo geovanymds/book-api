@@ -13,7 +13,7 @@ async def save_file(file: UploadFile, magic_code: str, file_index: int) -> bool:
             image.close()
             print('File saved !')
         image_info['path'] = path
-        image_info['url'] = f'http://localhost:8000/{path}'
+        image_info['url'] = f'http://localhost:8000/image/{magic_code}/{file_index}-{file.filename}'
         image_info['name'] = f'{file_index}-{file.filename}'
         return image_info
     except Exception as error:

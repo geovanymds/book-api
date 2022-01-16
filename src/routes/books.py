@@ -19,3 +19,26 @@ async def add_book(book: Book):
             status_code=400,
             detail="Can't added the book.",
         )
+
+
+@book_router.get("/", tags=["Book"],
+                 response_description="Return all books from the database.")
+async def get_books():
+    try:
+        return await book_service.get_all()
+    except:
+        raise HTTPException(
+            status_code=400,
+            detail="Can't find books.",
+        )
+
+
+@book_router.get("/{magic_code}", tags=["Book"], response_description="Return books info.")
+async def get_book_info(magic_code: str):
+    try:
+        return await book_service.get_book_info_by_magic_code(magic_code)
+    except:
+        raise HTTPException(
+            status_code=400,
+            detail="Can't find book info.",
+        )
