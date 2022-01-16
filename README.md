@@ -6,12 +6,14 @@ API para criação de livros. Nela são mantidas informações de um livro criad
 
 ## :heavy_check_mark: Pré-requisitos
 
-- Docker
-- Docker-compose
+- Docker (versão 0.10.6, build 370c289)
+- Docker-compose (versão 1.21.2, build a133471)
 - HTTP Client (Recomendação: Postman) - Utilizados para os testes
 - Permissão para execução de comandos através do Makefile
 
-> [!NOTE]
+> **⚠ WARNING: Aliens are coming.**  
+> Foram constatados problemas ao executar o projeto com algumas outras versões do docker-compose.
+
 > Alguns comandos do Makefile utilizam recursos do linux, então leia com atenção as etapas pois pode ser sugerido uma etapa alternativa dependendo do sistema operacional.
 
 ## :arrow_forward: Execução
@@ -56,7 +58,6 @@ A documentação das rotas está disponível através do Swagger no link <http:/
 
 **CRIAR LIVRO** -> **ADICIONAR PÁGINAS** -> **ADICIONAR IMAGENS** -> **RECUPERAR INFORMAÇÕES DO LIVRO**
 
-> [!NOTE]
 > Esta é somente uma sugestão de testes, pois outros podem ser realizados pelo usuário.
 
 4 - Crie um livro através da chamada **Create Book**. Todos os campos do corpo da requisição são obrigatórios. Ela retorna, dentre outras informações, o atributo **magic_code**. Ele será utilizado para recuperar informações do livro e adicioná-las também, então guarde-o.
@@ -95,6 +96,20 @@ Foi utilizado para instalação de dependências dentro do container.
 $ make freeze
 ```
 
+Ao entrar no container do banco é possível executar queries SQL além de alguns comandos úteis:
+
+Sair do container:
+
+```
+$ \q
+```
+
+Exibir alguma tabela:
+
+```
+$ \dt {table_name}
+```
+
 Também foi criada uma rota para recuperação de todos os livros. Ela retorna somente o título e código mágico. Foi pensada para caso o usuário esqueça de guardar o código mágico.
 
 ## :hammer_and_wrench: Construído com
@@ -111,6 +126,11 @@ Também foi criada uma rota para recuperação de todos os livros. Ela retorna s
 - Implementação de testes
 - Armazenar as imagens em um serviço em nuvem como o S3 ou Cloud Filestore por exemplo
 
+## :pencil2: Decisões tomadas
+
+Durante o processo de desenvolvimento me deparei com algumas escolhas que impactariam na solução. Foi optado pelo docker-compose para facilitar a configuração do ambiente da(s) pessoa(s) que ira(ão) rodar a aplicação, além de ser mais simples gerenciar os recursos necessários e padronizar as versões utilizadas. Para as tecnologias envolvidas na api optei pelas que já tinha algum conhecimento que poderiam facilitar o cumprimento de alguns requisitos do desafio. Já tinha conhecimento, por exemplo, que o FastAPI automatizava o desenvolvimento do Swagger. Para realizar o upload pensei em alguma solução simples e que fosse fácil de ser testada pelo avaliador, por isso a opção de utilizar um form-data, em detrimento de subir uma string base64 por exemplo. Ainda sobre o upload foi optado por salvar os arquivos no servidor para (novamente) facilitar a configuração de ambiente, pois outra alternativa (mais adequada para o ambiente real) seria o upload em algum serviço na nuvem. Por fim, para gerar o código único foi utilizado uma função que sorteava 6 letras, porém ainda era verificado se o valor gerado já não existia no banco. A probabilidade de serem gerados dois ou mais códigos é baixa, mas ainda foi feita essa validação para contornar a dificuldade em achar algum tipo de codificação que atendesse aos requisitos.
+
 ## :fox_face: Curiosidades
 
-- O limite de caracteres do campo texto das páginas foi escolhido utilizando uma página do livro O Pequeno Príncipe como base;
+- O limite de caracteres do campo texto das páginas foi escolhido utilizando uma página do livro O Pequeno Príncipe como base.
+- ANOTANDO: Listas não têm a propriedade .length no Python.
