@@ -31,6 +31,6 @@ app.include_router(image_router, prefix='/image')
 createDirectoryIfDoesntExist('public/')
 
 
-@app.get("/")
+@app.get("/", tags=["Status"], response_description="Return message Service Up if server is working.")
 async def home():
     return Response(status_code=200, content="Service up.")

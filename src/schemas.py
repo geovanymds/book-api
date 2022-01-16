@@ -8,8 +8,8 @@ class Book(BaseModel):
 
 
 class Page(BaseModel):
-    page_number: int
-    page_text: str
+    number: int
+    text: str
     magic_code: str
 
 
