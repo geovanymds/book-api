@@ -1,9 +1,28 @@
-import uuid
 import os
+from src.models.books import Books
+import string
+import random
+import src.utils.errors as errors
 
 
-def generateMagicCode() -> str:
-    return str(uuid.uuid4())
+def generate_random_code():
+    return ''.join(random.choice(string.ascii_uppercase)
+                   for _ in range(6))
+
+
+async def generateMagicCode() -> str:
+    try:
+        candidate_code = generate_random_code()
+        books = await Books.filter(magic_code=candidate_code)
+        tries = 0
+        while(len(books) > 0 and tries < 5):
+            candidate_code = generate_random_code()
+            books = await Books.filter(magic_code=candidate_code)
+        if(tries == 3):
+            raise Exception(errors.COUDNT_CREATE_MAGIC_CODE)
+        return candidate_code
+    except Exception as error:
+        raise error
 
 
 def createDirectoryIfDoesntExist(path: str) -> bool:

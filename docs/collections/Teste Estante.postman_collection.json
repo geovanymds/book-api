@@ -12,7 +12,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"title\": \"Meu terceiro livro\",\n    \"author\": \"Geovany\",\n    \"teacher\": \"Bruna\"\n}",
+					"raw": "{\n    \"title\": \"Meu primeiro livro\",\n    \"author\": \"Geovany\",\n    \"teacher\": \"Bruna\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -38,7 +38,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n  \"number\": 5,\n  \"text\": \"There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc. \",\n  \"magic_code\": \"a3c28f1a-5652-4743-9581-ba1ef1ad8c6f\"\n}",
+					"raw": "{\n  \"number\": 5,\n  \"text\": \"There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc. \",\n  \"magic_code\": \"\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -84,13 +84,13 @@
 					}
 				},
 				"url": {
-					"raw": "{{base_url}}/image/a3c28f1a-5652-4743-9581-ba1ef1ad8c6f",
+					"raw": "{{base_url}}/image/{maigc_code}",
 					"host": [
 						"{{base_url}}"
 					],
 					"path": [
 						"image",
-						"a3c28f1a-5652-4743-9581-ba1ef1ad8c6f"
+						"{maigc_code}"
 					]
 				}
 			},
@@ -102,13 +102,13 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{base_url}}/book/a3c28f1a-5652-4743-9581-ba1ef1ad8c6f",
+					"raw": "{{base_url}}/book/{magic_code}",
 					"host": [
 						"{{base_url}}"
 					],
 					"path": [
 						"book",
-						"a3c28f1a-5652-4743-9581-ba1ef1ad8c6f"
+						"{magic_code}"
 					]
 				}
 			},
