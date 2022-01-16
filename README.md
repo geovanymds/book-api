@@ -11,7 +11,7 @@ API para criação de livros. Nela são mantidas informações de um livro criad
 - HTTP Client (Recomendação: Postman) - Utilizados para os testes
 - Permissão para execução de comandos através do Makefile
 
-> **⚠ WARNING: Aliens are coming.**  
+> **⚠ WARNING**  
 > Foram constatados problemas ao executar o projeto com algumas outras versões do docker-compose.
 
 > Alguns comandos do Makefile utilizam recursos do linux, então leia com atenção as etapas pois pode ser sugerido uma etapa alternativa dependendo do sistema operacional.
