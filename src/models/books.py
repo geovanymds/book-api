@@ -7,6 +7,7 @@ class Books(Model):
     magic_code: str = fields.CharField(max_length=45, null=False, unique=True)
     title: str = fields.CharField(max_length=256, null=False)
     author: str = fields.CharField(max_length=256, null=False)
+    teacher: str = fields.CharField(max_length=256, null=False)
     total_pages: int = fields.IntField(default=0)
     total_images: int = fields.IntField(default=0)
 

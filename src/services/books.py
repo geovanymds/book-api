@@ -1,6 +1,7 @@
 from src.models.books import Books
 from src.models.images import Images
 from src.models.pages import Pages
+import src.utils.errors as errors
 
 import src.utils.utils as utils
 
@@ -10,7 +11,7 @@ async def create(book_data: dict):
         generated_magic_code = utils.generateMagicCode()
         book_data['magic_code'] = generated_magic_code
         print(f'BOOK DATA(service): {book_data}')
-        book = await Books.create(magic_code=book_data['magic_code'], title=book_data['title'], author=book_data['author'])
+        book = await Books.create(magic_code=book_data['magic_code'], title=book_data['title'], author=book_data['author'], teacher=book_data['teacher'])
         return book
     except Exception as error:
         print(f'[ERRO]: {error}')
@@ -34,7 +35,7 @@ async def get_book_info_by_magic_code(magic_code: str):
     try:
         books = await Books.filter(magic_code=magic_code)
         if(not books or len(books) <= 0):
-            raise Exception('Book dont found.')
+            raise Exception(errors.BOOK_DONT_FOUND)
         images = await Images.filter(book_id=books[0].book_id)
         pages = await Pages.filter(book_id=books[0].book_id)
         images_info = []
