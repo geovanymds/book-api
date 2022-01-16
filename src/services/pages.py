@@ -1,5 +1,6 @@
 from src.models.pages import Pages
 from src.models.books import Books
+import src.utils.errors as errors
 
 
 async def create(page_data: dict):
@@ -8,15 +9,15 @@ async def create(page_data: dict):
         book = await Books.filter(magic_code=page_data['magic_code'])
         if(len(book) <= 0):
             raise Exception(
-                'Book dont found.')
+                errors.BOOK_DONT_FOUND)
         if(book[0].total_pages == 6):
             raise Exception(
-                'Book already have 6 pages.')
+                errors.LIMIT_PAGES_BY_BOOK)
         is_page_number_valid = len(await Pages.filter(book_id=book[0].book_id, number=page_data['number'])) <= 0
         print(f'IS PAGE VALID: {is_page_number_valid}')
         if (not is_page_number_valid):
             raise Exception(
-                f'This book already has pagen number {page_data["number"]}')
+                errors.PAGE_ALREADY_RECORDED)
         print(f'BOOK FOUND: {book[0]}')
         page = await Pages.create(number=page_data['number'], text=page_data['text'], book_id=book[0].book_id)
         book[0].total_pages = book[0].total_pages+1

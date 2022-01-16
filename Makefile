@@ -1,3 +1,5 @@
+copy:
+	cp .env.example .env
 up:
 	docker-compose up
 # down:

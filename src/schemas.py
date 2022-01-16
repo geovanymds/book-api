@@ -5,6 +5,7 @@ from typing import Optional
 class Book(BaseModel):
     title: str
     author: str
+    teacher: str
 
 
 class Page(BaseModel):
