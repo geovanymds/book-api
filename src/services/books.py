@@ -48,5 +48,4 @@ async def get_book_info_by_magic_code(magic_code: str):
             'title': books[0].title, 'magic_code': books[0].magic_code, 'images': images_info, 'pages': pages_info}
         return book_info
     except Exception as error:
-        print(f'[ERRO]: {error}')
         raise error

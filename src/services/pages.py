@@ -23,5 +23,4 @@ async def create(page_data: dict):
         await book[0].save()
         return page
     except Exception as error:
-        print(f'[ERRO]: {error}')
         raise error

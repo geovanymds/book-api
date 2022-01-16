@@ -17,8 +17,9 @@ async def add_page(page: Page):
         new_page = await page_service.create(page)
         return ResponseSingleModel(success=True, data=new_page,
                                    message="Page attached to the book succefully.")
-    except:
+    except Exception as error:
+        print(f'[ERROR]: {error}')
         raise HTTPException(
             status_code=400,
-            detail="Can't added the book.",
+            detail=f"{error}",
         )

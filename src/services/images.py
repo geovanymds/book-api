@@ -20,5 +20,4 @@ async def upload(magic_code: str, file: UploadFile = File(...)):
         await book[0].save()
         return image_stored_data
     except Exception as error:
-        print(f'[ERRO]: {error}')
         raise error

@@ -14,10 +14,11 @@ async def add_book(book: Book):
         new_book = await book_service.create(book)
         return ResponseSingleModel(success=True, data=new_book,
                                    message="Book added successfully.")
-    except:
+    except Exception as error:
+        print(f'[ERROR]: {error}')
         raise HTTPException(
             status_code=400,
-            detail="Can't added the book.",
+            detail=f"{error}",
         )
 
 
@@ -26,10 +27,11 @@ async def add_book(book: Book):
 async def get_books():
     try:
         return await book_service.get_all()
-    except:
+    except Exception as error:
+        print(f'[ERROR]: {error}')
         raise HTTPException(
             status_code=400,
-            detail="Can't find books.",
+            detail=f"{error}",
         )
 
 
@@ -37,8 +39,9 @@ async def get_books():
 async def get_book_info(magic_code: str):
     try:
         return await book_service.get_book_info_by_magic_code(magic_code)
-    except:
+    except Exception as error:
+        print(f'[ERROR]: {error}')
         raise HTTPException(
             status_code=400,
-            detail="Can't find book info.",
+            detail=f"{error}",
         )

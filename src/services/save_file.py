@@ -11,11 +11,10 @@ async def save_file(file: UploadFile, magic_code: str, file_index: int) -> bool:
             content = await file.read()
             image.write(content)
             image.close()
-            print('File saved !')
+            print('File saved!')
         image_info['path'] = path
         image_info['url'] = f'http://localhost:8000/image/{magic_code}/{file_index}-{file.filename}'
         image_info['name'] = f'{file_index}-{file.filename}'
         return image_info
     except Exception as error:
-        print(f'[ERRO]: {error}')
         raise error

@@ -17,7 +17,6 @@ async def upload_image(magic_code: str, file: UploadFile = File(...)):
         return ResponseSingleModel(success=True, data=image,
                                    message="Image attatched successfully.")
     except Exception as error:
-        print(f'[ERROR]: {error}')
         raise HTTPException(
             status_code=400,
             detail=f"{error}",
