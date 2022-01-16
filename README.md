@@ -95,6 +95,8 @@ Foi utilizado para instalação de dependências dentro do container.
 $ make freeze
 ```
 
+Também foi criada uma rota para recuperação de todos os livros. Ela retorna somente o título e código mágico. Foi pensada para caso o usuário esqueça de guardar o código mágico.
+
 ## :hammer_and_wrench: Construído com
 
 - [asyncpg](https://github.com/MagicStack/asyncpg) - Dependência comunicação com o SGDB

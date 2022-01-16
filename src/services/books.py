@@ -1,6 +1,7 @@
 from src.models.books import Books
 from src.models.images import Images
 from src.models.pages import Pages
+import src.utils.errors as errors
 
 import src.utils.utils as utils
 
@@ -34,7 +35,7 @@ async def get_book_info_by_magic_code(magic_code: str):
     try:
         books = await Books.filter(magic_code=magic_code)
         if(not books or len(books) <= 0):
-            raise Exception('Book dont found.')
+            raise Exception(errors.BOOK_DONT_FOUND)
         images = await Images.filter(book_id=books[0].book_id)
         pages = await Pages.filter(book_id=books[0].book_id)
         images_info = []
