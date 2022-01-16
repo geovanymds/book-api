@@ -4,7 +4,7 @@ API para criação de livros. Nela são mantidas informações de um livro criad
 
 ## Começando
 
-## Pré-requisitos
+## :heavy_check_mark: Pré-requisitos
 
 - Docker
 - Docker-compose
@@ -14,7 +14,7 @@ API para criação de livros. Nela são mantidas informações de um livro criad
 > [!NOTE]
 > Alguns comandos do Makefile utilizam recursos do linux, então leia com atenção as etapas pois pode ser sugerido uma etapa alternativa dependendo do sistema operacional.
 
-## Execução
+## :arrow_forward: Execução
 
 1 - Clone o projeto:
 
@@ -44,7 +44,7 @@ Nas próximas execuções é possível utilizar `$ make up` para iniciar o proje
 </br>
 ![Service up.](./docs/assets/images/service_up.png)
 
-## Testes
+## :test_tube: Como usar
 
 A documentação das rotas está disponível através do Swagger no link <http://localhost:8000/docs>. Para auxiliar ainda está disponível no diretório docs/collections a collection e as variáveis de ambiente para serem utilizadas no Postman. É recomendável utilizar este Cliente HTTP pois as chamadas já estão prontas, porém é possível também utilizar outro com as informações fornecidas pelo Swagger.
 
@@ -69,11 +69,11 @@ A documentação das rotas está disponível através do Swagger no link <http:/
 
 Ainda é possível visualizar as imagens armazenadas com as urls fornecidas na última chamada.
 
-## Outros recursos
+## :small_blue_diamond: :small_blue_diamond: :small_blue_diamond: Outros recursos
 
 Durante a execução do docker-compose são instanciados dois serviços, o da api e o do banco de dados (Postgres).
 
-Acesso ao banco de dados:
+:arrow_right: Acesso ao banco de dados:
 
 ```
 $ make db
@@ -81,7 +81,7 @@ $ make db
 
 Aqui é solicitada a senha do banco e ela é encontrada nos arquivos .env e .env.example. Dentro do terminal do sgdb ainda é possível realizar consultas e alterações no banco e tabelas através de queries.
 
--> Acesso ao container da api:
+:arrow_right: Acesso ao container da api:
 
 ```
 $ make api
@@ -89,8 +89,27 @@ $ make api
 
 Foi utilizado para instalação de dependências dentro do container.
 
--> Atualização do requirements.txt:
+:arrow_right: Atualização do requirements.txt:
 
 ```
 $ make freeze
 ```
+
+## :hammer_and_wrench: Construído com
+
+- [asyncpg](https://github.com/MagicStack/asyncpg) - Dependência comunicação com o SGDB
+- [fastapi](https://github.com/tiangolo/fastapi) - Framework paraconstrução da api
+- [pydantic](https://github.com/samuelcolvin/pydantic) - Validação das propriedades das requests
+- [python-multipart](https://github.com/andrew-d/python-multipart) - Tratamento de requisições com body tipo form-data
+- [tortoise-orm](https://github.com/tortoise/tortoise-orm) - ORM para mapeamento dos registros no banco para objetos
+- [uuid](https://docs.python.org/3/library/uuid.html) - Geração do código mágico
+- [uvicorn](https://github.com/encode/uvicorn) - Instanciar servidor
+
+## :small_orange_diamond: :small_orange_diamond: :small_orange_diamond: Próximos passos
+
+- Implementação de testes
+- Armazenar as imagens em um serviço em nuvem como o S3 ou Cloud Filestore por exemplo
+
+## :fox_face: Curiosidades
+
+- O limite de caracteres do campo texto das páginas foi escolhido utilizando uma página do livro O Pequeno Príncipe como base;
