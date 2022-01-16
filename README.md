@@ -104,7 +104,6 @@ Também foi criada uma rota para recuperação de todos os livros. Ela retorna s
 - [pydantic](https://github.com/samuelcolvin/pydantic) - Validação das propriedades das requests
 - [python-multipart](https://github.com/andrew-d/python-multipart) - Tratamento de requisições com body tipo form-data
 - [tortoise-orm](https://github.com/tortoise/tortoise-orm) - ORM para mapeamento dos registros no banco para objetos
-- [uuid](https://docs.python.org/3/library/uuid.html) - Geração do código mágico
 - [uvicorn](https://github.com/encode/uvicorn) - Instanciar servidor
 
 ## :small_orange_diamond: :small_orange_diamond: :small_orange_diamond: Próximos passos
