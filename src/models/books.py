@@ -4,7 +4,7 @@ from tortoise import fields
 
 class Books(Model):
     book_id: int = fields.IntField(pk=True)
-    magic_code: str = fields.CharField(max_length=45, null=False, unique=True)
+    magic_code: str = fields.CharField(max_length=6, null=False, unique=True)
     title: str = fields.CharField(max_length=256, null=False)
     author: str = fields.CharField(max_length=256, null=False)
     teacher: str = fields.CharField(max_length=256, null=False)
