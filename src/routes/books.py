@@ -1,8 +1,6 @@
-from email import message
 from fastapi import APIRouter, HTTPException
 from fastapi.encoders import jsonable_encoder
 from src.schemas import Book, ResponseSingleModel
-from src.models.books import Books
 import src.services.books as book_service
 
 book_router = APIRouter()
@@ -16,8 +14,34 @@ async def add_book(book: Book):
         new_book = await book_service.create(book)
         return ResponseSingleModel(success=True, data=new_book,
                                    message="Book added successfully.")
-    except:
+    except Exception as error:
+        print(f'[ERROR]: {error}')
         raise HTTPException(
             status_code=400,
-            detail="Can't added the book.",
+            detail=f"{error}",
+        )
+
+
+@book_router.get("/", tags=["Book"],
+                 response_description="Return all books from the database.")
+async def get_books():
+    try:
+        return await book_service.get_all()
+    except Exception as error:
+        print(f'[ERROR]: {error}')
+        raise HTTPException(
+            status_code=400,
+            detail=f"{error}",
+        )
+
+
+@book_router.get("/{magic_code}", tags=["Book"], response_description="Return books info.")
+async def get_book_info(magic_code: str):
+    try:
+        return await book_service.get_book_info_by_magic_code(magic_code)
+    except Exception as error:
+        print(f'[ERROR]: {error}')
+        raise HTTPException(
+            status_code=400,
+            detail=f"{error}",
         )
