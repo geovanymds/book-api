@@ -4,6 +4,8 @@ services:
     restart: on-failure
     build: .
     container_name: container_book_api
+    command: |
+      bash -c 'while !</dev/tcp/pgsql/5432; do sleep 1; done; uvicorn main:app --reload --workers 1 --host 0.0.0.0 --port 8000'
     depends_on:
       - pgsql
     volumes:

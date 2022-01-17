@@ -70,6 +70,12 @@ A documentação das rotas está disponível através do Swagger no link <http:/
 
 Ainda é possível visualizar as imagens armazenadas com as urls fornecidas na última chamada.
 
+7 - Para a execução de testes unitários, utilize o comando abaixo. Mas atenção, os containers precisam estar sendo executados:
+
+```
+$ make test
+```
+
 ## :small_blue_diamond: :small_blue_diamond: :small_blue_diamond: Outros recursos
 
 Durante a execução do docker-compose são instanciados dois serviços, o da api e o do banco de dados (Postgres).
@@ -128,7 +134,7 @@ Também foi criada uma rota para recuperação de todos os livros. Ela retorna s
 
 ## :pencil2: Decisões tomadas
 
-Durante o processo de desenvolvimento me deparei com algumas escolhas que impactariam na solução. Foi optado pelo docker-compose para facilitar a configuração do ambiente da(s) pessoa(s) que ira(ão) rodar a aplicação, além de ser mais simples gerenciar os recursos necessários e padronizar as versões utilizadas. Para as tecnologias envolvidas na api optei pelas que já tinha algum conhecimento que poderiam facilitar o cumprimento de alguns requisitos do desafio. Já tinha conhecimento, por exemplo, que o FastAPI automatizava o desenvolvimento do Swagger. Para realizar o upload pensei em alguma solução simples e que fosse fácil de ser testada pelo avaliador, por isso a opção de utilizar um form-data, em detrimento de subir uma string base64 por exemplo. Ainda sobre o upload foi optado por salvar os arquivos no servidor para (novamente) facilitar a configuração de ambiente, pois outra alternativa (mais adequada para o ambiente real) seria o upload em algum serviço na nuvem. Por fim, para gerar o código único foi utilizado uma função que sorteava 6 letras, porém ainda era verificado se o valor gerado já não existia no banco. A probabilidade de serem gerados dois ou mais códigos é baixa, mas ainda foi feita essa validação para contornar a dificuldade em achar algum tipo de codificação que atendesse aos requisitos. Eu tentei implementar os testes unitários para as rotas, mas tive dificuldade em integrá-lo com o ORM e com o banco de dados.
+Durante o processo de desenvolvimento me deparei com algumas escolhas que impactariam na solução. Foi optado pelo docker-compose para facilitar a configuração do ambiente da(s) pessoa(s) que ira(ão) rodar a aplicação, além de ser mais simples gerenciar os recursos necessários e padronizar as versões utilizadas. Para as tecnologias envolvidas na api optei pelas que já tinha algum conhecimento que poderiam facilitar o cumprimento de alguns requisitos do desafio. Já tinha conhecimento, por exemplo, que o FastAPI automatizava o desenvolvimento do Swagger. Para realizar o upload pensei em alguma solução simples e que fosse fácil de ser testada pelo avaliador, por isso a opção de utilizar um form-data, em detrimento de subir uma string base64 por exemplo. Ainda sobre o upload foi optado por salvar os arquivos no servidor para (novamente) facilitar a configuração de ambiente, pois outra alternativa (mais adequada para o ambiente real) seria o upload em algum serviço na nuvem. Por fim, para gerar o código único foi utilizado uma função que sorteava 6 letras, porém ainda era verificado se o valor gerado já não existia no banco. A probabilidade de serem gerados dois ou mais códigos é baixa, mas ainda foi feita essa validação para contornar a dificuldade em achar algum tipo de codificação que atendesse aos requisitos. Foram encontradas algumas dificuldades para implementar os testes, porém foi possível fazê-los para pelo menos dois serviços, rotas e páginas. A dificuldade inicial foi em descobrir como contornar a comunicação com o banco, porém foi possível com uma bibliteca para mockar o retorno. Outro detalhe interessante durante o desenvolvimento foi o comportamento inicial dos containers: a api tentava se conectar ao banco mesmo antes do postgres estar pronto, então algumas logs de erros eram geradas. Como solução para isso foi adicionado um comando encontrado (por acaso) enquanto procurava como fazer os testes.
 
 ## :fox_face: Curiosidades
 
