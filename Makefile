@@ -2,12 +2,16 @@ copy:
 	cp .env.example .env
 up:
 	docker-compose up
-# down:
-# 	docker-compose down
+down:
+	docker-compose down
+rm-vol-db:
+	sudo rm -r postgres-data
 stop:
 	docker-compose stop
 build: 
 	docker-compose up --build
+test:
+	docker exec -it container_book_api pytest .
 freeze:
 	docker exec -it container_book_api pip freeze > requirements.txt
 install:
