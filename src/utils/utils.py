@@ -18,7 +18,8 @@ async def generateMagicCode() -> str:
         while(len(books) > 0 and tries < 5):
             candidate_code = generate_random_code()
             books = await Books.filter(magic_code=candidate_code)
-        if(tries == 3):
+            tries = tries + 1
+        if(tries == 5):
             raise Exception(errors.COUDNT_CREATE_MAGIC_CODE)
         return candidate_code
     except Exception as error:
